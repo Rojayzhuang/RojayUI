@@ -1,0 +1,17 @@
+{
+  "name": "rojay-ui-1",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^3.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-rc.1",
+    "eslint": "^7.5.0",
+    "eslint-plugin-vue": "^7.0.0-alpha.10",
+    "vite": "^1.0.0-rc.1"
+  }
+}
