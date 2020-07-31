@@ -11,7 +11,7 @@ export default {
   name: 'App',
   components: {
     Frank
-    //或者缩写为一个Frank
+    //或者写为Frank:Frank
   }
 }
 </script>
