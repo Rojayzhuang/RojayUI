@@ -1,6 +1,5 @@
 <template>
   <div>Christe&Rojay</div>
-  <!直接引用Frank>
   <Frank/>
 </template>
 
