@@ -1,5 +1,5 @@
 <template>
     <div>
-        我的第一个组件，试一试
+        Frank 2aaaa
     </div>
 </template>
