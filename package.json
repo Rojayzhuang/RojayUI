@@ -10,9 +10,8 @@
     "vue-router": "4.0.0-beta.3"
   },
   "devDependencies": {
+    "sass": "1.26.10",
     "@vue/compiler-sfc": "^3.0.0-rc.1",
-    "eslint": "^7.5.0",
-    "eslint-plugin-vue": "^7.0.0-alpha.10",
     "vite": "^1.0.0-rc.1"
   }
 }

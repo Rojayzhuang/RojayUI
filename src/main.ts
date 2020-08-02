@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './index.css'
+import './index.scss'
 import {createWebHashHistory, createRouter} from 'vue-router'
-import Frank from './components/Frank.vue'
-import Frank2 from './components/Frank2.vue'
+import Home from './views/Home.vue'
+import Doc from './views/Doc.vue'
 
 
 //新建history对象
@@ -13,9 +13,9 @@ const router = createRouter({
     history: history,
     routes:[
         //当用户访问根路径时展示的组件
-        {path: '/', component: Frank},
+        {path: '/', component: Home},
         //当用户访问其他路径时展示的组件
-        {path: '/xxx', component: Frank2}
+        {path: '/xxx', component: Doc}
     ]
 })
 
