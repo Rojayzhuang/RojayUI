@@ -15,7 +15,7 @@ const router = createRouter({
         //当用户访问根路径时展示的组件
         {path: '/', component: Home},
         //当用户访问其他路径时展示的组件
-        {path: '/xxx', component: Doc}
+        {path: '/doc', component: Doc}
     ]
 })
 

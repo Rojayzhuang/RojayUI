@@ -4,9 +4,9 @@
         <div class="banner">
             <h1>RojayUI</h1>
             <h2>Rojay自造的 UI 框架</h2>
-            <p class="action">
-                <a href="">GitHub</a>
-                <a href="">开始</a>
+            <p class="actions">
+                <a href="https://github.com/Rojayzhuang">GitHub</a>
+                <router-link to="/doc">开始</router-link>
             </p>
         </div>
     </div>
@@ -28,7 +28,7 @@ export default {
   > .actions{
     padding: 8px 0;
     a {
-      margin:0 8px;
+       margin:0 8px;
       background: #fff;
       display: inline-block;
       $h: 28px;
