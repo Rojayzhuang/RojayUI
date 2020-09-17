@@ -5,6 +5,8 @@
         <li>菜单1</li>
         <li>菜单2</li>
     </ul>
+    <!-- 添加侧边菜单切换按钮 -->
+    <span class="toggleAside"></span>
 </div>
 </template>
 
@@ -34,6 +36,8 @@ export default {
     padding: 16px;
     position: relative;
     z-index: 10;
+    justify-content: center;
+    align-items: center;
 
     >.logo {
         max-width: 6em;
@@ -47,6 +51,19 @@ export default {
 
         >li {
             margin: 0 1em;
+        }
+    }
+
+    >.toggleMenu {}
+
+    @media (max-width:500px) {
+        >.menu {
+            display: none;
+        }
+
+        //当页面达到500px时，logo居中显示（左右都是auto）
+        >.logo {
+            margin: 0 auto;
         }
     }
 }
