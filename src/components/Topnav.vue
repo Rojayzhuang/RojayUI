@@ -1,12 +1,12 @@
 <template>
 <div class="topnav">
-    <div class="logo" @click="toggleMenu">LOGO</div>
+    <div class="logo">LOGO</div>
     <ul class="menu">
         <li>菜单1</li>
         <li>菜单2</li>
     </ul>
     <!-- 添加侧边菜单切换按钮 -->
-    <span class="toggleAside"></span>
+    <span class="toggleAside" @click="toggleMenu"></span>
 </div>
 </template>
 
@@ -54,7 +54,25 @@ export default {
         }
     }
 
-    >.toggleMenu {}
+    >.toggleAside {
+        width: 24px;
+        height: 24px;
+        background: url(../images/menu-btn.png) center center no-repeat;
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        //当小于500px才会出现，因此默认为none
+        display: none;
+        //vue官网menu-button的css样式
+        //position: absolute;
+        //width: 24px;
+        //height: 24px;
+        //top: 8px;
+        //left: 12px;
+        //background: url(../images/menu-but.png) center center no-repeat;
+        //background-size: 24px;
+    }
 
     @media (max-width:500px) {
         >.menu {
@@ -64,6 +82,11 @@ export default {
         //当页面达到500px时，logo居中显示（左右都是auto）
         >.logo {
             margin: 0 auto;
+        }
+
+        //当页面500px时，出现menu-button
+        >.toggleAside {
+            display: inline-block;
         }
     }
 }
