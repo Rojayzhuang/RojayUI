@@ -44,6 +44,7 @@ span {
     width: $h2;
     background: white;
     border-radius: $h2 / 2;
+    transition: left 250ms;
 }
 
 //如果button的状态是checked（被触发）则背景变为蓝色
@@ -55,5 +56,10 @@ button.checked {
 button.checked>span {
     //使用CSS的高级样式
     left: calc(100% - #{$h2} - 2px);
+}
+
+//解决点击switch控件出现黑框的问题
+button:focus {
+    outline: none;
 }
 </style>
