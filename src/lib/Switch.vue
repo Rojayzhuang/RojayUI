@@ -14,7 +14,7 @@ export default {
         //默认false
         const toggle = () => {
             //toggle的作用是将当前值取反，通过input事件发送给外面
-            context.emit('input', !props.value)
+            context.emit('update:value', !props.value)
         }
         return {
             toggle

@@ -31,7 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 .topnav {
-    background: pink;
+    background: gray;
     display: flex;
     padding: 16px;
     position: fixed;
