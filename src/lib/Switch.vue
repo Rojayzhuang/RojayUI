@@ -1,5 +1,5 @@
 <template>
-<button @click="toggle" :class="{checked}"> <span></span> </button>
+<button @click="toggle" :class="{checked:value}"> <span></span> </button>
 </template>
 
 <script lang="ts">
@@ -7,14 +7,16 @@ import {
     ref
 } from 'vue'
 export default {
-    setup() {
+    props: {
+        value: Boolean
+    },
+    setup(props, context) {
         //默认false
-        const checked = ref(false);
         const toggle = () => {
-            checked.value = !checked.value
+            //toggle的作用是将当前值取反，通过input事件发送给外面
+            context.emit('input', !props.value)
         }
         return {
-            checked,
             toggle
         }
     }
