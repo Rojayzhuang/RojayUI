@@ -32,7 +32,7 @@ button {
     width: $h*2;
     border: none;
     //默认状态为灰色
-    background: gray;
+    background: #bfbfbf;
     border-radius: $h/2;
     position: relative;
 }
@@ -46,12 +46,12 @@ span {
     width: $h2;
     background: white;
     border-radius: $h2 / 2;
-    transition: left 250ms;
+    transition: all 250ms;
 }
 
 //如果button的状态是checked（被触发）则背景变为蓝色
 button.checked {
-    background: blue;
+    background: #1890ff;
 }
 
 //按钮切换的动画
@@ -63,5 +63,18 @@ button.checked>span {
 //解决点击switch控件出现黑框的问题
 button:focus {
     outline: none;
+}
+
+button:active {
+    >span {
+        width: $h2 + 4px;
+    }
+}
+
+button.checked:active {
+    >span {
+        width: $h2 + 4px;
+        margin-left: -4px;
+    }
 }
 </style>
