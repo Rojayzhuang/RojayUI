@@ -3,7 +3,7 @@
     <!--需要监听Switch按钮的值，插入input事件，监听 -->
     <!-- Switch :value="y" @update:value="y = $event" / -->
     <!-- 将上述代码简化，使用v-model，将对update监听自动加上-->
-    <Switch v-model:value="y" />
+    <Switch v-model:value="bool" />
 </div>
 </template>
 
@@ -17,9 +17,9 @@ export default {
         Switch
     },
     setup() {
-        const y = ref(false)
+        const bool = ref(false)
         return {
-            y
+            bool
         }
     }
 }
