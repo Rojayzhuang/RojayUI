@@ -1,5 +1,5 @@
 <template>
-<button @click="toggle" :class="{checked:value}"> <span></span> </button>
+<button class="rojay-switch" @click="toggle" :class="{'rojay-checked':value}"> <span></span> </button>
 </template>
 
 <script lang="ts">
@@ -23,11 +23,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<!-- 必须保证选择器是稳定的，所以不能使用scoped-->
+
+<style lang="scss">
 $h:22px;
 $h2:$h - 4px;
 
-button {
+.rojay-switch {
     height: $h;
     width: $h*2;
     border: none;
@@ -49,7 +51,7 @@ button {
     }
 
     //如果button的状态是checked（被触发）则背景变为蓝色
-    &.checked {
+    &.rojay-checked {
         background: #1890ff;
 
         //按钮切换的动画
@@ -70,7 +72,7 @@ button {
         }
     }
 
-    &.checked:active {
+    &.rojay-checked:active {
         >span {
             width: $h2 + 4px;
             margin-left: -4px;

@@ -1,5 +1,5 @@
 <template>
-<button class="rojay-button" :class="{[`theme-${theme}`]: theme}">
+<button class="rojay-button" :class="{[`rojay-theme-${theme}`]: theme}">
     <slot />
 </button>
 </template>
@@ -15,7 +15,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<!-- 必须保证选择器是稳定的，所以不能使用scoped-->
+
+<style lang="scss">
 //默认高度
 $h: 32px;
 $border-color: #d9d9d9;
