@@ -1,16 +1,38 @@
 <template>
-<button class="rojay-button" :class="{[`rojay-theme-${theme}`]: theme}">
+<button class="rojay-button" :class="classes">
     <slot />
 </button>
 </template>
 
 <script lang="ts">
+import {
+    computed
+} from 'vue';
 export default {
     props: {
         theme: {
             type: String,
             default: "button",
         },
+        size: {
+            type: String,
+            default: "normal",
+        }
+    },
+    setup(props) {
+        const {
+            theme,
+            size
+        } = props
+        const classes = computed(() => {
+            return {
+                [`rojay-theme-${theme}`]: theme,
+                [`rojay-size-${size}`]: size,
+            };
+        });
+        return {
+            classes
+        };
     },
 };
 </script>
@@ -60,6 +82,43 @@ $radius: 4px;
     //在firfox中
     &::-moz-focus-inner {
         border: 0;
+    }
+
+    &.rojay-theme-link {
+        border-color: transparent;
+        box-shadow: none;
+        color: $blue;
+
+        &:hover,
+        &:focus {
+            color: lighten($blue, 10%);
+        }
+    }
+
+    &.rojay-theme-text {
+        border-color: transparent;
+        box-shadow: none;
+        color: inherit;
+
+        &:hover,
+        &:focus {
+            background: darken(white, 5%);
+            ;
+        }
+    }
+
+    &.rojay-theme-button {
+        &.rojay-size-big {
+            font-size: 24px;
+            height: 48px;
+            padding: 0 16px;
+        }
+
+        &.rojay-size-small {
+            font-size: 12px;
+            height: 20px;
+            padding: 0 4px;
+        }
     }
 }
 </style>
