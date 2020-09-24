@@ -10,9 +10,10 @@
 
 <h1>示例2</h1>
 <div>
-    <Button>你好</Button>
-    <Button size="big">你好</Button>
-    <Button size="small">你好</Button>
+
+    <Button size="big">大按钮</Button>
+    <Button>普通按钮</Button>
+    <Button size="small">小按钮</Button>
 </div>
 </template>
 
