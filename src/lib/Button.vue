@@ -1,5 +1,7 @@
 <template>
 <button class="rojay-button" :class="classes" :disabled="disabled">
+    <!--加载中的图标-->
+    <span v-if="loading" class="rojay-loadingIndicator"></span>
     <slot />
 </button>
 </template>
@@ -23,6 +25,10 @@ export default {
             default: "normal",
         },
         disabled: {
+            type: Boolean,
+            default: false,
+        },
+        loading: {
             type: Boolean,
             default: false,
         }
@@ -59,6 +65,7 @@ $blue: #40a9ff;
 $radius: 4px;
 $red:red;
 $grey:grey;
+$yellow:#ffff00;
 
 .rojay-button {
     box-sizing: border-box;
@@ -147,9 +154,9 @@ $grey:grey;
         }
 
         &.rojay-level-danger {
-            background: $red;
+            background: $yellow;
             border-color: $red;
-            color: white;
+            color: black;
 
             &:hover,
             &:focus {
@@ -207,6 +214,30 @@ $grey:grey;
             cursor: not-allowed;
             color: $grey;
         }
+    }
+
+    >.rojay-loadingIndicator {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        margin-right: 4px;
+        border-radius: 8px;
+        border-color: $blue $blue $blue transparent;
+        border-style: solid;
+        border-width: 2px;
+        animation: rojay-spin 1s infinite linear;
+        background: rgb(236, 246, 247);
+    }
+}
+
+//加载中动画
+@keyframes rojay-spin {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
     }
 }
 </style>
