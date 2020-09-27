@@ -2,18 +2,18 @@
 <template v-if="visible">
 
     <!--遮罩层 -->
-    <div class="rojay-dialog-overlay"></div>
+    <div class="rojay-dialog-overlay" @click="OnClickOverlay"></div>
     <!--本体-->
     <div class="rojay-dialog-wrapper">
         <div class="rojay-dialog">
-            <header>标题<span class="rojay-dialog-close"></span></header>
+            <header>标题<span @click="close" class="rojay-dialog-close"></span></header>
             <main>
                 <p>第一行字</p>
                 <p>第二行字</p>
             </main>
             <footer>
-                <Button level="main">OK</Button>
-                <Button>Cancel</Button>
+                <Button level="main" @click="ok">OK</Button>
+                <Button @click="cancel">Cancel</Button>
             </footer>
         </div>
     </div>
@@ -27,11 +27,55 @@ export default {
         visible: {
             type: Boolean,
             default: false
+        },
+        //是否点击遮罩层关闭
+        closeOnClickOverlay: {
+            type: Boolean,
+            default: true
+        },
+        ok: {
+            type: Function
+        },
+        cancel: {
+            type: Function
         }
     },
     components: {
         Button,
     },
+    setup(props, context) {
+        const close = () => {
+            context.emit('update:visible', false)
+        }
+        const OnClickOverlay = () => {
+            if (props.closeOnClickOverlay) {
+                close()
+            }
+        }
+        const ok = () => {
+            /*if (props.ok && props.ok() !== false) {
+                close()
+            }
+            可以缩写为
+            如果close不存在，直接执行退出，如果close存在
+            再对比返回值和false是否是不相等的，只要不等于false，
+            就执行close
+            */
+            if (props.ok?.() !== false) {
+                close()
+            }
+        }
+        const cancel = () => {
+            context.emit('cancel')
+            close()
+        }
+        return {
+            close,
+            OnClickOverlay,
+            ok,
+            cancel
+        }
+    }
 };
 </script>
 
