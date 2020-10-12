@@ -4,18 +4,21 @@
 </div>
 
 <h1>示例1</h1>
-<Button @click="toggle">toggle</Button>
-<!--<Dialog :visible="x" @update:visible="x = $event"> </Dialog>-->
-<!--可以优化为,点击ok时执行f1函数，点击cancel时执行f2函数-->
-<Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f2">
-    <template v-slot:content>
-        <strong>hi</strong>
-        <div>hi2</div>
-    </template>
-    <template v-slot:title>
-        <strong>加粗的标题</strong>
-    </template>
-</Dialog>
+<div style="position: relative; z-index: 1;">
+    <Button @click="toggle">toggle</Button>
+    <!--<Dialog :visible="x" @update:visible="x = $event"> </Dialog>-->
+    <!--可以优化为,点击ok时执行f1函数，点击cancel时执行f2函数-->
+    <Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f2">
+        <template v-slot:content>
+            <strong>hi</strong>
+            <div>hi2</div>
+        </template>
+        <template v-slot:title>
+            <strong>加粗的标题</strong>
+        </template>
+    </Dialog>
+</div>
+<div style="position: relative; z-index: 2; width: 300px; height: 300px; background: red;"></div>
 </template>
 
 <script lang="ts">

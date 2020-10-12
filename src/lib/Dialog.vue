@@ -1,23 +1,27 @@
 <template>
 <template v-if="visible">
-
-    <!--遮罩层 -->
-    <div class="rojay-dialog-overlay" @click="OnClickOverlay"></div>
-    <!--本体-->
-    <div class="rojay-dialog-wrapper">
-        <div class="rojay-dialog">
-            <header>
-                <slot name="title" /><span @click="close" class="rojay-dialog-close"></span>
-            </header>
-            <main>
-                <slot name="content" />
-            </main>
-            <footer>
-                <Button level="main" @click="ok">OK</Button>
-                <Button @click="cancel">Cancel</Button>
-            </footer>
+    <!-- 使用teleport组件使Dialog始终置于body下面
+    （传送至body的下面，也可以传送至app下面，可自己调节），不会被别的所遮盖 -->
+    <Teleport to="body">
+        <!--遮罩层 -->
+        <div class="rojay-dialog-overlay" @click="OnClickOverlay"></div>
+        <!--本体-->
+        <div class="rojay-dialog-wrapper">
+            <div class="rojay-dialog">
+                <header>
+                    <slot name="title" /><span @click="close" class="rojay-dialog-close"></span>
+                </header>
+                <main>
+                    <slot name="content" />
+                </main>
+                <footer>
+                    <Button level="main" @click="ok">OK</Button>
+                    <Button @click="cancel">Cancel</Button>
+                </footer>
+            </div>
         </div>
-    </div>
+    </Teleport>
+
 </template>
 </template>
 
