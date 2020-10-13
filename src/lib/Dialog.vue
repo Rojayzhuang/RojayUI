@@ -71,7 +71,9 @@ export default {
             }
         }
         const cancel = () => {
-            context.emit('cancel')
+            //context.emit('cancel')
+            //props.cancel && props.cancel()可以缩写为
+            props.cancel?.()
             close()
         }
         return {
