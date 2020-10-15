@@ -1,8 +1,12 @@
 <template>
-<div>
-    <div v-for="(t,index) in titles" :key="index">{{t}}</div>
-    <!-- c表示一个组件,这是用component实现的一个插槽 -->
-    <component v-for="(c,index) in defaults" :is="c" :key="index" />
+<div class="rojay-tabs">
+    <div class="rojay-tabs-nav">
+        <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" :key="index">{{t}}</div>
+    </div>
+    <div class="rojay-tabs-content">
+        <!-- c表示一个组件,这是用component实现的一个插槽 -->
+        <component class="rojay-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index" />
+    </div>
 
 </div>
 </template>
@@ -46,3 +50,35 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+$bule: #40a9ff;
+$color: #333;
+$border-color: #d9d9d9;
+
+.rojay-tabs {
+    &-nav {
+        display: flex;
+        color: $color;
+        border-bottom: 1px solid $border-color;
+
+        &-item {
+            padding: 8px 0;
+            margin: 0 16px;
+            cursor: pointer;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &.selected {
+                color: &blue;
+            }
+        }
+    }
+
+    &-content {
+        padding: 8px 0;
+    }
+}
+</style>
