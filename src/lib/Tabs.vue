@@ -1,8 +1,8 @@
 <template>
 <div>
-    Tabs 组件
-    <component :is="defaults[0]" />
-    <component :is="defaults[1]" />
+    <div v-for="(t,index) in titles" :key="index">{{t}}</div>
+    <!-- c表示一个组件,这是用component实现的一个插槽 -->
+    <component v-for="(c,index) in defaults" :is="c" :key="index" />
 
 </div>
 </template>
@@ -26,8 +26,22 @@ export default {
                 throw new Error('Tabs 子标签必须是 Tab')
             }
         })
+        /*//对每一个defaults进行一个遍历,在Tabs中获取到title
+        defaults.forEach((tag) => {
+            //将遍历到的每一个tag打印出来，可以发现props中包含
+            //所需要的title属性
+            console.log(
+                ...tag.props.title
+            )
+        })*/
+        //使用上述的方式获取到了title，接下来优化代码
+        //将这两个东西存储起来
+        const titles = defaults.map((tag) => {
+            return tag.props.title
+        })
         return {
-            defaults
+            defaults,
+            titles
         }
     }
 }
