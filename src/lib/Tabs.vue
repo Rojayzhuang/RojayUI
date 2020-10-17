@@ -1,10 +1,10 @@
 <template>
 <div class="rojay-tabs">
     <div class="rojay-tabs-nav">
-        <!-- 导航的选中，添加class,使用selected -->
-        <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" @click="select(t)" :class="{selected: t == selected}" :key="index">{{t}}</div>
-        <!-- 会动的横线 -->
-        <div class="rojay-tabs-nav-indicator"></div>
+        <!-- 导航的选中，添加class,使用selected ;需要关联ref以获取宽度，复杂的需要加":"号-->
+        <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" :ref="el => {if(el) navItems[index] = el }" @click="select(t)" :class="{selected: t == selected}" :key="index">{{t}}</div>
+        <!-- 会动的横线 需要关联ref以获取宽度，不复杂的不需要加":"号-->
+        <div class="rojay-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="rojay-tabs-content">
         <component class="rojay-tabs-content-item" :class="{selected: c.props.title === selected }" v-for="c in defaults" :is="c" />
@@ -16,7 +16,9 @@
 <script lang="ts">
 import Tab from './Tab.vue'
 import {
-    computed
+    computed,
+    onMounted,
+    ref
 } from 'vue'
 export default {
     props: {
@@ -25,6 +27,35 @@ export default {
         }
     },
     setup(props, context) {
+        //在setup中声明，需要return才能使用
+        //使用<>来传递TypeScript参数，这是TypeScript的泛型语法
+        //该语句的意思是ref([])的数组是一个HTMLDiv元素的数组
+        const navItems = ref < HTMLDivElement[] > ([])
+        //会动横线的ref，用以获取该组件的宽度
+        const indicator = ref < HTMLDivElement > (null)
+        onMounted(() => {
+            /*console.log({
+                ...navItems.value
+            })*/
+            //获取到所有导航的div
+            const divs = navItems.value
+            //获取到之后找到一个class为selected的div
+            //将找到的结果命名为result
+            //使用TypeScript泛型语法规定div的属性为HTMLDiv元素数组这样会提示classList
+            //但是filter总是会返回一个数组（一个包含了被选中div的数组），
+            //我们不需要这个数组，只需要元素，因此加[0]
+            const result = divs.filter(div => div.classList.contains('selected'))[0]
+            /*//上述的另一种写法,但find在一些古老的浏览器中不支持
+            const result = divs.find(div => div.classList.
+            contains('selected'))[0]*/
+            console.log(result)
+            //得到组件的宽度
+            const {
+                width
+            } = result.getBoundingClientRect()
+            //将indicator的宽度赋值为获取到的组件宽度
+            indicator.value.style.width = width + 'px'
+        })
         /*console.log({
             //0是第一个tab
             ...context.slots.default()[0]
@@ -41,7 +72,7 @@ export default {
             }
         })
         const current = computed(() => {
-            console.log('重新 return')
+            //console.log('重新 return')
             return defaults.filter((tag) => {
                 return tag.props.title === props.selected
             })[0]
@@ -66,7 +97,9 @@ export default {
             defaults,
             titles,
             current,
-            select
+            select,
+            navItems,
+            indicator
         }
     }
 }
