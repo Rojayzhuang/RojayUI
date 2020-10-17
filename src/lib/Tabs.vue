@@ -1,6 +1,6 @@
 <template>
 <div class="rojay-tabs">
-    <div class="rojay-tabs-nav">
+    <div class="rojay-tabs-nav" ref="container">
         <!-- 导航的选中，添加class,使用selected ;需要关联ref以获取宽度，复杂的需要加":"号-->
         <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" :ref="el => {if(el) navItems[index] = el }" @click="select(t)" :class="{selected: t == selected}" :key="index">{{t}}</div>
         <!-- 会动的横线 需要关联ref以获取宽度，不复杂的不需要加":"号-->
@@ -18,6 +18,7 @@ import Tab from './Tab.vue'
 import {
     computed,
     onMounted,
+    onUpdated,
     ref
 } from 'vue'
 export default {
@@ -30,13 +31,17 @@ export default {
         //在setup中声明，需要return才能使用
         //使用<>来传递TypeScript参数，这是TypeScript的泛型语法
         //该语句的意思是ref([])的数组是一个HTMLDiv元素的数组
+        //需要与item关联
         const navItems = ref < HTMLDivElement[] > ([])
-        //会动横线的ref，用以获取该组件的宽度
+        //会动横线的ref，用以获取该组件的宽度，与横线关联
         const indicator = ref < HTMLDivElement > (null)
-        onMounted(() => {
+        //用以指定横线的滑动距离,需要与nav关联
+        const container = ref < HTMLDivElement > (null)
+        //优化代码
+        const x = () => {
             /*console.log({
-                ...navItems.value
-            })*/
+                            ...navItems.value
+                        })*/
             //获取到所有导航的div
             const divs = navItems.value
             //获取到之后找到一个class为selected的div
@@ -48,14 +53,32 @@ export default {
             /*//上述的另一种写法,但find在一些古老的浏览器中不支持
             const result = divs.find(div => div.classList.
             contains('selected'))[0]*/
-            console.log(result)
+            //console.log(result)
             //得到组件的宽度
             const {
                 width
             } = result.getBoundingClientRect()
             //将indicator的宽度赋值为获取到的组件宽度
             indicator.value.style.width = width + 'px'
-        })
+            //得到container的left(左边的坐标)
+            const {
+                //对left进行重命名，因为两个都为left
+                left: left1
+            } = container.value.getBoundingClientRect()
+            //得到div的left
+            const {
+                //对left进行重命名
+                left: left2
+            } = result.getBoundingClientRect()
+            //横线移动的距离
+            const left = left2 - left1
+            indicator.value.style.left = left + 'px'
+        }
+        //onMounted只在第一次渲染执行（即用户切换后不会执行）
+        onMounted(x)
+        //与onMounted不同，该代码页面发生变化时就会渲染
+        onUpdated(x)
+
         /*console.log({
             //0是第一个tab
             ...context.slots.default()[0]
@@ -99,7 +122,8 @@ export default {
             current,
             select,
             navItems,
-            indicator
+            indicator,
+            container
         }
     }
 }
@@ -138,6 +162,8 @@ $border-color: #d9d9d9;
             left: 0;
             bottom: -1px;
             width: 100px;
+            //横线切换的柔和动画,250ms是动画展示一个较为舒服的时间
+            transition: all 250ms;
         }
     }
 
