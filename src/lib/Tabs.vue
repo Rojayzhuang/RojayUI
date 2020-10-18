@@ -4,7 +4,7 @@
         <!-- 导航的选中，添加class,使用selected ;需要关联ref以获取宽度，复杂的需要加":"号
         <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" :ref="el => {if(el) navItems[index] = el }" @click="select(t)" :class="{selected: t == selected}" :key="index">{{t}}</div> -->
         <!-- 优化代码取出navItems后 -->
-        <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" :ref="el => {if(t==selected) selectedItem = el }" @click="select(t)" :class="{selected: t == selected}" :key="index">{{t}}</div>
+        <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" :ref="el => {if(t===selected) selectedItem = el }" @click="select(t)" :class="{selected: t === selected}" :key="index">{{t}}</div>
         <!-- 会动的横线 需要关联ref以获取宽度，不复杂的不需要加":"号-->
         <div class="rojay-tabs-nav-indicator" ref="indicator"></div>
     </div>
