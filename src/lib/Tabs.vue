@@ -1,8 +1,10 @@
 <template>
 <div class="rojay-tabs">
     <div class="rojay-tabs-nav" ref="container">
-        <!-- 导航的选中，添加class,使用selected ;需要关联ref以获取宽度，复杂的需要加":"号-->
-        <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" :ref="el => {if(el) navItems[index] = el }" @click="select(t)" :class="{selected: t == selected}" :key="index">{{t}}</div>
+        <!-- 导航的选中，添加class,使用selected ;需要关联ref以获取宽度，复杂的需要加":"号
+        <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" :ref="el => {if(el) navItems[index] = el }" @click="select(t)" :class="{selected: t == selected}" :key="index">{{t}}</div> -->
+        <!-- 优化代码取出navItems后 -->
+        <div class="rojay-tabs-nav-item" v-for="(t,index) in titles" :ref="el => {if(t==selected) selectedItem = el }" @click="select(t)" :class="{selected: t == selected}" :key="index">{{t}}</div>
         <!-- 会动的横线 需要关联ref以获取宽度，不复杂的不需要加":"号-->
         <div class="rojay-tabs-nav-indicator" ref="indicator"></div>
     </div>
@@ -32,7 +34,10 @@ export default {
         //使用<>来传递TypeScript参数，这是TypeScript的泛型语法
         //该语句的意思是ref([])的数组是一个HTMLDiv元素的数组
         //需要与item关联
-        const navItems = ref < HTMLDivElement[] > ([])
+        //const navItems = ref < HTMLDivElement[] > ([])
+
+        //代码优化，直接取出被选中的item可以去除navItem
+        const selectedItem = ref < HTMLDivElement > (null)
         //会动横线的ref，用以获取该组件的宽度，与横线关联
         const indicator = ref < HTMLDivElement > (null)
         //用以指定横线的滑动距离,需要与nav关联
@@ -43,13 +48,13 @@ export default {
                             ...navItems.value
                         })*/
             //获取到所有导航的div
-            const divs = navItems.value
+            //const divs = navItems.value
             //获取到之后找到一个class为selected的div
             //将找到的结果命名为result
             //使用TypeScript泛型语法规定div的属性为HTMLDiv元素数组这样会提示classList
             //但是filter总是会返回一个数组（一个包含了被选中div的数组），
             //我们不需要这个数组，只需要元素，因此加[0]
-            const result = divs.filter(div => div.classList.contains('selected'))[0]
+            //const result = divs.filter(div => div.classList.contains('selected'))[0]
             /*//上述的另一种写法,但find在一些古老的浏览器中不支持
             const result = divs.find(div => div.classList.
             contains('selected'))[0]*/
@@ -57,7 +62,7 @@ export default {
             //得到组件的宽度
             const {
                 width
-            } = result.getBoundingClientRect()
+            } = selectedItem.value.getBoundingClientRect()
             //将indicator的宽度赋值为获取到的组件宽度
             indicator.value.style.width = width + 'px'
             //得到container的left(左边的坐标)
@@ -69,7 +74,7 @@ export default {
             const {
                 //对left进行重命名
                 left: left2
-            } = result.getBoundingClientRect()
+            } = selectedItem.value.getBoundingClientRect()
             //横线移动的距离
             const left = left2 - left1
             indicator.value.style.left = left + 'px'
@@ -121,7 +126,7 @@ export default {
             titles,
             current,
             select,
-            navItems,
+            selectedItem,
             indicator,
             container
         }
