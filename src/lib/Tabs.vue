@@ -43,47 +43,49 @@ export default {
         //用以指定横线的滑动距离,需要与nav关联
         const container = ref < HTMLDivElement > (null)
         //优化代码
-        const x = () => {
-            /*console.log({
-                            ...navItems.value
-                        })*/
-            //获取到所有导航的div
-            //const divs = navItems.value
-            //获取到之后找到一个class为selected的div
-            //将找到的结果命名为result
-            //使用TypeScript泛型语法规定div的属性为HTMLDiv元素数组这样会提示classList
-            //但是filter总是会返回一个数组（一个包含了被选中div的数组），
-            //我们不需要这个数组，只需要元素，因此加[0]
-            //const result = divs.filter(div => div.classList.contains('selected'))[0]
-            /*//上述的另一种写法,但find在一些古老的浏览器中不支持
-            const result = divs.find(div => div.classList.
-            contains('selected'))[0]*/
-            //console.log(result)
-            //得到组件的宽度
-            const {
-                width
-            } = selectedItem.value.getBoundingClientRect()
-            //将indicator的宽度赋值为获取到的组件宽度
-            indicator.value.style.width = width + 'px'
-            //得到container的left(左边的坐标)
-            const {
-                //对left进行重命名，因为两个都为left
-                left: left1
-            } = container.value.getBoundingClientRect()
-            //得到div的left
-            const {
-                //对left进行重命名
-                left: left2
-            } = selectedItem.value.getBoundingClientRect()
-            //横线移动的距离
-            const left = left2 - left1
-            indicator.value.style.left = left + 'px'
-        }
+        onMounted(() => {
+            watchEffect(() => {
+                /*console.log({
+                                ...navItems.value
+                            })*/
+                //获取到所有导航的div
+                //const divs = navItems.value
+                //获取到之后找到一个class为selected的div
+                //将找到的结果命名为result
+                //使用TypeScript泛型语法规定div的属性为HTMLDiv元素数组这样会提示classList
+                //但是filter总是会返回一个数组（一个包含了被选中div的数组），
+                //我们不需要这个数组，只需要元素，因此加[0]
+                //const result = divs.filter(div => div.classList.contains('selected'))[0]
+                /*//上述的另一种写法,但find在一些古老的浏览器中不支持
+                const result = divs.find(div => div.classList.
+                contains('selected'))[0]*/
+                //console.log(result)
+                //得到组件的宽度
+                const {
+                    width
+                } = selectedItem.value.getBoundingClientRect()
+                //将indicator的宽度赋值为获取到的组件宽度
+                indicator.value.style.width = width + 'px'
+                //得到container的left(左边的坐标)
+                const {
+                    //对left进行重命名，因为两个都为left
+                    left: left1
+                } = container.value.getBoundingClientRect()
+                //得到div的left
+                const {
+                    //对left进行重命名
+                    left: left2
+                } = selectedItem.value.getBoundingClientRect()
+                //横线移动的距离
+                const left = left2 - left1
+                indicator.value.style.left = left + 'px'
+            })
+        })
         //watchEffect(x)
         //onMounted只在第一次渲染执行（即用户切换后不会执行）
-        onMounted(x)
+        //onMounted(x)
         //与onMounted不同，该代码页面发生变化时就会渲染
-        onUpdated(x)
+        //onUpdated(x)
         /*console.log({
             //0是第一个tab
             ...context.slots.default()[0]
