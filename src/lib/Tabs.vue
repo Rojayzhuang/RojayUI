@@ -20,7 +20,6 @@ import Tab from './Tab.vue'
 import {
     computed,
     onMounted,
-    onUpdated,
     ref,
     watchEffect
 } from 'vue'
@@ -81,7 +80,6 @@ export default {
                 indicator.value.style.left = left + 'px'
             })
         })
-        //watchEffect(x)
         //onMounted只在第一次渲染执行（即用户切换后不会执行）
         //onMounted(x)
         //与onMounted不同，该代码页面发生变化时就会渲染
