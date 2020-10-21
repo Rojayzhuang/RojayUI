@@ -9,7 +9,8 @@
         <div class="rojay-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="rojay-tabs-content">
-        <component class="rojay-tabs-content-item" :class="{selected: c.props.title === selected }" v-for="c in defaults" :is="c" />
+        <!--<component class="rojay-tabs-content-item" :class="{selected: c.props.title === selected }" v-for="c in defaults" :is="c" /> -->
+        <component :is="current" :key="current.props.title" />
     </div>
 
 </div>
@@ -100,6 +101,10 @@ export default {
             }
         })
 
+        const current = computed(() => {
+            return defaults.find(tag => tag.props.title === props.selected)
+        })
+
         /*//对每一个defaults进行一个遍历,在Tabs中获取到title
         defaults.forEach((tag) => {
             //将遍历到的每一个tag打印出来，可以发现props中包含
@@ -117,6 +122,7 @@ export default {
             context.emit('update:selected', title)
         }
         return {
+            current,
             defaults,
             titles,
             select,
@@ -169,13 +175,13 @@ $border-color: #d9d9d9;
     &-content {
         padding: 8px 0;
 
-        &-item {
+        /*&-item {
             display: none;
 
             &.selected {
                 display: block;
             }
-        }
+        }*/
     }
 }
 </style>
