@@ -24,6 +24,6 @@ export default {
                 menuVisible.value = false;
             }
         });
-    }
-}
+    },
+};
 </script>

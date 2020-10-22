@@ -27,22 +27,22 @@
 </template>
 
 <script lang="ts">
-import Topnav from '../components/Topnav.vue';
+import Topnav from "../components/Topnav.vue";
 import {
     inject,
     Ref
-} from 'vue';
+} from "vue";
 export default {
     components: {
         Topnav
     },
     setup() {
-        const menuVisible = inject < Ref < boolean >> ('menuVisible') //get
+        const menuVisible = inject < Ref < boolean >> ("menuVisible"); //get
         //console.log('Doc aside 获取的 menuVisible 为：' + menuVisible.value)
         return {
             menuVisible
-        }
-    }
+        };
+    },
 };
 </script>
 

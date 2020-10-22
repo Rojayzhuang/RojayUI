@@ -1,16 +1,16 @@
-import Dialog from './Dialog.vue'
-import {createApp, h } from 'vue';
+import Dialog from "./Dialog.vue";
+import {createApp, h } from "vue";
 export const openDialog = (options) =>{
     //除了title、content外还可以有其他参数，此处举例ok，cancel
-    const {title, content, ok, cancel} = options
-    const div = document.createElement('div')
-    document.body.appendChild(div)
+    const {title, content, ok, cancel} = options;
+    const div = document.createElement('div');
+    document.body.appendChild(div);
     const close = () => {
         //当监听到false时销毁这个app,使用下面的注释让ts不要对下行代码检测是否错误
         //@ts-ignore
-        app.unmount(div)
-        div.remove()
-    }
+        app.unmount(div);
+        div.remove();
+    };
     //不能传递visible的写法，点击按钮不会弹出Dialog，需要更改visible属性为true
     //createApp({Dialog}).mount(div)
     const app = createApp({
@@ -22,8 +22,8 @@ export const openDialog = (options) =>{
            return h(Dialog, 
             {
                 visible: true, 
-                'onUpdate:visible':(newVisible)=>{
-                if(newVisible== false) {
+                "onUpdate:visible":(newVisible)=>{
+                if(newVisible === false) {
                     close();
                 }
             },
@@ -31,9 +31,9 @@ export const openDialog = (options) =>{
         }, {
                //title:title, content: content
                //因为上行代码左右两边是一样的，所以可以缩写为
-               title,content
-           }) 
-        }
-    })
-    app.mount(div)
-}
+               title,content,
+           }); 
+        },
+    });
+    app.mount(div);
+};

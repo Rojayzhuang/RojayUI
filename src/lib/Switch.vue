@@ -5,7 +5,7 @@
 <script lang="ts">
 import {
     ref
-} from 'vue'
+} from "vue"
 export default {
     props: {
         value: Boolean
@@ -14,13 +14,13 @@ export default {
         //默认false
         const toggle = () => {
             //toggle的作用是将当前值取反，通过input事件发送给外面
-            context.emit('update:value', !props.value)
+            context.emit("update:value", !props.value);
         }
         return {
             toggle
-        }
+        };
     }
-}
+};
 </script>
 
 <!-- 必须保证选择器是稳定的，所以不能使用scoped-->
