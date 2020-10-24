@@ -22,11 +22,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//声明一种绿色
+$green:#02bcb0;
+//按钮圆角
+$border-radius: 4px;
+//字体颜色
+$color:#007974;
+
 .topnavAndBanner {
     background: linear-gradient(145deg, rgba(2, 0, 36, 1) 0%, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
 }
 
 .banner {
+    color: $color;
     padding: 100px 0;
     display: flex;
     justify-content: center;
@@ -38,13 +46,16 @@ export default {
 
         a {
             margin: 0 8px;
-            background: #fff;
+            background: $green;
+            //字的颜色
+            color: white;
             display: inline-block;
-            $h: 28px;
-            height: $h;
-            line-height: $h;
-            border-radius: $h/2;
-            padding: 0 8px;
+            padding: 8px 24px;
+            border-radius: $border-radius;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
 }

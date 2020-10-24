@@ -30,7 +30,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//字体颜色
+$color:#007974;
+
 .topnav {
+    color: $color;
     display: flex;
     padding: 16px;
     position: fixed;
