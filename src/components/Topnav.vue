@@ -1,12 +1,16 @@
 <template>
 <div class="topnav">
-    <div class="logo">LOGO</div>
+    <div class="logo">
+        <svg class="icon">
+            <use xlink:href="#icon-bear"></use>
+        </svg>LOGO
+    </div>
     <ul class="menu">
         <li>菜单1</li>
         <li>菜单2</li>
     </ul>
     <!-- 添加侧边菜单切换按钮 -->
-    <span class="toggleAside" @click="toggleMenu"></span>
+    <span class="toggleAside" @click="toggleMenu">三</span>
 </div>
 </template>
 
@@ -48,6 +52,11 @@ $color:#007974;
     >.logo {
         max-width: 6em;
         margin-right: auto;
+
+        >svg {
+            width: 32px;
+            height: 32px;
+        }
     }
 
     >.menu {
@@ -63,7 +72,8 @@ $color:#007974;
     >.toggleAside {
         width: 24px;
         height: 24px;
-        background: url(../images/menu-btn.png) center center no-repeat;
+        //background: url(../images/menu-btn.png) center center no-repeat;
+        background: red;
         position: absolute;
         left: 16px;
         top: 50%;
