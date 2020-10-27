@@ -1,10 +1,11 @@
 <template>
 <div class="topnav">
-    <div class="logo">
+    <!-- 使logo定向到首页 -->
+    <router-link to="/" class="logo">
         <svg class="icon">
             <use xlink:href="#icon-bear"></use>
-        </svg>LOGO
-    </div>
+        </svg>
+    </router-link>
     <ul class="menu">
         <li>
             <router-link to="/doc">文档</router-link>
