@@ -10,7 +10,7 @@
         <li>菜单2</li>
     </ul>
     <!-- 添加侧边菜单切换按钮 -->
-    <span class="toggleAside" @click="toggleMenu">三</span>
+    <span class="toggleAside" @click="toggleMenu"></span>
 </div>
 </template>
 
@@ -18,19 +18,19 @@
 import {
     inject,
     Ref
-} from 'vue'
+} from "vue";
 export default {
     setup() {
         const menuVisible = inject < Ref < boolean >> ('menuVisible') //get
         //console.log('topnav 获取的 menuVisible 为：' + menuVisible.value)
         const toggleMenu = () => {
             menuVisible.value = !menuVisible.value
-        }
+        };
         return {
             toggleMenu
-        }
-    }
-}
+        };
+    },
+};
 </script>
 
 <style lang="scss" scoped>

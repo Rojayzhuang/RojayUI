@@ -45,6 +45,12 @@ $color:#007974;
 
 .topnavAndBanner {
     background: linear-gradient(145deg, rgba(2, 0, 36, 1) 0%, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
+    /*//使用border-radius做圆弧
+    border-bottom-left-radius: 50% 40px;
+    border-bottom-right-radius: 50% 40px;*/
+    //clip-path做圆弧  google: mdn clip path
+    //在网页代码检查中找到topnavAndBanner的样式，使用shift + ↑ 来调整数值
+    clip-path: ellipse(80% 60% at 50% 40%);
 }
 
 .features {
