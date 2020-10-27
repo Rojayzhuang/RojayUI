@@ -11,7 +11,9 @@
         </li>
     </ul>
     <!-- 添加侧边菜单切换按钮 -->
-    <span class="toggleAside" @click="toggleMenu"></span>
+    <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
+        <use xlink:href="#icon-menu"></use>
+    </svg>
 </div>
 </template>
 
@@ -21,6 +23,13 @@ import {
     Ref
 } from "vue";
 export default {
+    //优化左侧边文档按钮（只在文档页面显示）
+    props: {
+        toggleMenuButtonVisible: {
+            type: Boolean,
+            default: false
+        }
+    },
     setup() {
         const menuVisible = inject < Ref < boolean >> ('menuVisible') //get
         //console.log('topnav 获取的 menuVisible 为：' + menuVisible.value)
@@ -71,16 +80,17 @@ $color:#007974;
     }
 
     >.toggleAside {
-        width: 24px;
-        height: 24px;
+        width: 32px;
+        height: 32px;
         //background: url(../images/menu-btn.png) center center no-repeat;
-        background: red;
         position: absolute;
         left: 16px;
         top: 50%;
         transform: translateY(-50%);
         //当小于500px才会出现，因此默认为none
         display: none;
+        //给左侧菜单icon加背景
+        //background: fade-out($color: black, $amount: 0.9);
     }
 
     @media (max-width:500px) {
