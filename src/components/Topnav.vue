@@ -32,10 +32,10 @@ export default {
         }
     },
     setup() {
-        const menuVisible = inject < Ref < boolean >> ('menuVisible') //get
+        const menuVisible = inject < Ref < boolean >> ('menuVisible'); //get
         //console.log('topnav 获取的 menuVisible 为：' + menuVisible.value)
         const toggleMenu = () => {
-            menuVisible.value = !menuVisible.value
+            menuVisible.value = !menuVisible.value;
         };
         return {
             toggleMenu
@@ -56,7 +56,7 @@ $color:#007974;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 20;
     justify-content: center;
     align-items: center;
 

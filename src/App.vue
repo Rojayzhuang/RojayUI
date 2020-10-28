@@ -6,13 +6,13 @@
 import {
     provide,
     ref
-} from 'vue'
+} from "vue"
 import {
     router
-} from './router';
+} from "./router";
 //菜单点击显示点击隐藏功能
 export default {
-    name: 'App',
+    name: "App",
     setup() {
         //获取浏览器的宽度
         const width = document.documentElement.clientWidth;
