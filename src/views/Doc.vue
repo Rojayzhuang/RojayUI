@@ -62,6 +62,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//被选中路由的高亮显示
+.router-link-active {
+    text-decoration: underline;
+}
+
 .layout {
     display: flex;
     flex-direction: column;
