@@ -17,6 +17,10 @@
                     <router-link to="/doc/get-started">开始使用</router-link>
                 </li>
 
+                <li>
+                    <router-link to="/doc/note">学习笔记</router-link>
+                </li>
+
             </ol>
             <h2>组件列表</h2>
             <ol>
