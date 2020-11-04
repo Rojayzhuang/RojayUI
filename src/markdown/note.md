@@ -817,3 +817,10 @@ $ export PATH=$PATH:$M2_HOME/bin:C:\Users\65157\AppData\Roaming\npm\node_modules
 
 
 [![Bazy28.png](https://s1.ax1x.com/2020/10/31/Bazy28.png)](https://imgchr.com/i/Bazy28)
+
+
+
+
+### 展示源代码
+**方便用户拷贝**
+需要使用 vue-loader 的 Custom Blocks功能
