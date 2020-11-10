@@ -825,3 +825,7 @@ $ export PATH=$PATH:$M2_HOME/bin:C:\Users\65157\AppData\Roaming\npm\node_modules
 **方便用户拷贝**
 需要使用 vue-loader 的 Custom Blocks功能
 
+
+
+### 高亮源代码
+**使用 prismjs 和 v-html
