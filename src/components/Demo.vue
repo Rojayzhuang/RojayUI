@@ -1,39 +1,34 @@
 <template>
-  <!--需要监听Switch按钮的值，插入input事件，监听 -->
-  <!-- Switch :value="y" @update:value="y = $event" / -->
-  <!-- 将上述代码简化，使用v-model，将对update监听自动加上-->
-  <!--<Switch v-model:value="bool" /> -->
-
-  <div>
-    <h1>Switch 组件示例</h1>
-    <Demo :component="Switch1Demo" />
-    <Demo :component="Switch2Demo" />
+  <div class="demo">
+    <h2>{{ component.__sourceCodeTitle }}</h2>
+    <div class="demo-component">
+      <component :is="component" />
+    </div>
+    <div class="demo-actions">
+      <Button>查看代码</Button>
+    </div>
+    <div class="demo-code">
+      <pre
+        class="language-html"
+        v-html="
+          Prism.highlight(component.__sourceCode, Prism.languages.html, 'html')
+        "
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import Switch from "../lib/Switch.vue";
 import Button from "../lib/Button.vue";
-import Switch1Demo from "./Switch1.demo.vue";
-import Switch2Demo from "./Switch2.demo.vue";
 import "prismjs";
 import "prismjs/themes/prism-okaidia.css";
-//将prism变成window下的any类型，避免报错
 const Prism = (window as any).Prism;
-import Demo from "./Demo.vue";
-
-import { ref } from "vue";
 export default {
-  components: {
-    Button,
-    Demo,
+  props: {
+    component: Object,
   },
   setup() {
-    const bool = ref(false);
     return {
-      bool,
-      Switch1Demo,
-      Switch2Demo,
       Prism,
     };
   },
