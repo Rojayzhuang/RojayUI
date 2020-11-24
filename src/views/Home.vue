@@ -1,143 +1,152 @@
 <template>
-<div>
+  <div>
     <div class="topnavAndBanner">
-        <Topnav />
-        <div class="banner">
-            <h1>RojayUI</h1>
-            <h2>Rojay自造的 UI 框架</h2>
-            <p class="actions">
-                <a href="https://github.com/Rojayzhuang">GitHub</a>
-                <router-link to="/doc">开始</router-link>
-            </p>
-        </div>
+      <Topnav />
+      <div class="banner">
+        <h1>RojayUI</h1>
+        <h2>Rojay自造的 UI 框架</h2>
+        <p class="actions">
+          <a href="https://github.com/Rojayzhuang">GitHub</a>
+          <router-link to="/doc">开始</router-link>
+        </p>
+      </div>
     </div>
     <div class="features">
-        <ul>
-            <li>
-                <svg class="icon">
-                    <use xlink:href="#icon-vue"></use>
-                </svg>
-                <h3>基于 Vue 3</h3>
-                <p>骄傲地使用了 Vue 3 Composition API</p>
-            </li>
+      <ul>
+        <li>
+          <svg class="icon">
+            <use xlink:href="#icon-vue"></use>
+          </svg>
+          <h3>基于 Vue 3</h3>
+          <p>骄傲地使用了 Vue 3 Composition API</p>
+        </li>
 
-            <li>
-                <svg class="icon">
-                    <use xlink:href="#icon-ts"></use>
-                </svg>
-                <h3>基于 TypeScript </h3>
-                <p>源代码采用 TypeScript 书写（非严格检查）</p>
-            </li>
+        <li>
+          <svg class="icon">
+            <use xlink:href="#icon-ts"></use>
+          </svg>
+          <h3>基于 TypeScript</h3>
+          <p>源代码采用 TypeScript 书写</p>
+        </li>
 
-            <li>
-                <svg class="icon">
-                    <use xlink:href="#icon-dahuoji"></use>
-                </svg>
-                <h3>代码易读</h3>
-                <p>每个组件的源代码都极其简洁</p>
-            </li>
-        </ul>
+        <li>
+          <svg class="icon">
+            <use xlink:href="#icon-dahuoji"></use>
+          </svg>
+          <h3>代码易读</h3>
+          <p>每个组件的源代码都极其简洁</p>
+        </li>
+      </ul>
     </div>
-</div>
+  </div>
 </template>
 
 <script lang="ts">
 import Topnav from "../components/Topnav.vue";
 export default {
-    components: {
-        Topnav
-    },
+  components: {
+    Topnav,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 //声明一种绿色
-$green:#02bcb0;
+$green: #02bcb0;
 //按钮圆角
 $border-radius: 4px;
 //字体颜色
-$color:#007974;
+$color: #007974;
 
 .topnavAndBanner {
-    background: linear-gradient(145deg, rgba(2, 0, 36, 1) 0%, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
-    /*//使用border-radius做圆弧
+  background: linear-gradient(145deg, rgba(2, 0, 36, 1) 0%, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
+  /*//使用border-radius做圆弧
     border-bottom-left-radius: 50% 40px;
     border-bottom-right-radius: 50% 40px;*/
-    //clip-path做圆弧  google: mdn clip path
-    //在网页代码检查中找到topnavAndBanner的样式，使用shift + ↑ 来调整数值
-    clip-path: ellipse(80% 60% at 50% 40%);
+  //clip-path做圆弧  google: mdn clip path
+  //在网页代码检查中找到topnavAndBanner的样式，使用shift + ↑ 来调整数值
+  clip-path: ellipse(80% 60% at 50% 40%);
 }
 
 .features {
-    margin: 64px auto;
-    width: 400px;
+  margin: 64px auto;
+  padding: 0 16px;
 
-    @media (min-width: 800px) {
-        width: 800px;
+  @media (min-width: 800px) {
+    width: 800px;
+    > ul {
+      > li {
+        width: 50%;
+      }
     }
+  }
 
-    @media (min-width: 1200px) {
-        width: 1200px;
+  @media (min-width: 1200px) {
+    width: 1200px;
+    > ul {
+      > li {
+        width: 33.3333%;
+      }
     }
+  }
 
-    >ul {
-        display: flex;
-        flex-wrap: wrap;
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
 
-        >li {
-            width: 400px;
-            margin: 16px 0;
-            display: grid;
-            justify-content: start;
-            align-content: space-between;
-            grid-template-areas:
-                "icon title"
-                "icon text";
-            grid-template-columns: 80px auto;
-            grid-template-rows: 1fr auto;
+    > li {
+      margin: 16px 0;
+      display: grid;
+      justify-content: start;
+      align-content: space-between;
+      grid-template-areas:
+        "icon title"
+        "icon text";
+      grid-template-columns: 80px auto;
+      grid-template-rows: 1fr auto;
 
-            >svg {
-                grid-area: icon;
-                width: 64px;
-                height: 64px;
-            }
+      > svg {
+        grid-area: icon;
+        width: 64px;
+        height: 64px;
+      }
 
-            >h3 {
-                grid-area: title;
-                font-size: 28px;
-            }
+      > h3 {
+        grid-area: title;
+        font-size: 28px;
+      }
 
-            >p {
-                grid-area: text;
-            }
-        }
+      > p {
+        grid-area: text;
+      }
     }
+  }
 }
 
 .banner {
-    color: $color;
-    padding: 100px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  color: $color;
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-    >.actions {
-        padding: 8px 0;
+  > .actions {
+    padding: 8px 0;
 
-        a {
-            margin: 0 8px;
-            background: $green;
-            //字的颜色
-            color: white;
-            display: inline-block;
-            padding: 8px 24px;
-            border-radius: $border-radius;
+    a {
+      margin: 0 8px;
+      background: $green;
+      //字的颜色
+      color: white;
+      display: inline-block;
+      padding: 8px 24px;
+      border-radius: $border-radius;
 
-            &:hover {
-                text-decoration: none;
-            }
-        }
+      &:hover {
+        text-decoration: none;
+      }
     }
+  }
 }
 </style>
