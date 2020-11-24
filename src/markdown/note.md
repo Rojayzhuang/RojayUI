@@ -828,4 +828,73 @@ $ export PATH=$PATH:$M2_HOME/bin:C:\Users\65157\AppData\Roaming\npm\node_modules
 
 
 ### 高亮源代码
-**使用 prismjs 和 v-html
+**使用 prismjs 和 v-html**
+
+
+
+### build 之后加载 .md 文件报错
+
+因为 rollup 不支持 import() 时拼字符串
+
+#### 情景：
+
+1. 使用下面代码加载
+
+```
+yarn build
+```
+
+2. 使用如下命令启动端口
+
+```
+http-server dist -c-1
+或者
+hs dist -c-1
+
+```
+
+
+[![DtXonO.png](https://s3.ax1x.com/2020/11/24/DtXonO.png)](https://imgchr.com/i/DtXonO)
+
+3. 进入后，发现无法加载md文件，网络报错md文件404代码
+
+[![DtX4c6.png](https://s3.ax1x.com/2020/11/24/DtX4c6.png)](https://imgchr.com/i/DtX4c6)
+
+
+**原因** 在路由 router.ts 中，跳转到 markdown 文件是动态加载的，需要知道相应的 filename ，而 filename 只有在运行的时候才会知道。
+
+[![DtvaQ0.png](https://s3.ax1x.com/2020/11/24/DtvaQ0.png)](https://imgchr.com/i/DtvaQ0)
+
+
+<font color=red> **解决方案** </font>
+
+在 router.ts 中先导入需要的 md 文件：
+
+```
+
+import intro from './markdown/intro.md';
+import getStarted from "./markdown/get-started.md";
+import install from "./markdown/install.md";
+import note from "./markdown/note.md";
+
+```
+
+路径中也要做相应更改：
+
+```
+
+    {path: "intro", component: md(intro)},
+    {path: "get-started", component: md(getStarted) },
+    {path: "install", component: md(install) },
+    {path: "note", component: md(note) },
+
+```
+
+并对 md 进行相应修改：
+
+```
+const md = string => h(Markdown, { content: string, key: string })
+
+```
+
+[![DNiJxJ.png](https://s3.ax1x.com/2020/11/24/DNiJxJ.png)](https://imgchr.com/i/DNiJxJ)
