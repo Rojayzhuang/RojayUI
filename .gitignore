@@ -4,3 +4,5 @@ dist
 *.local
 .vscode
 package.json
+/.history
+/dist
